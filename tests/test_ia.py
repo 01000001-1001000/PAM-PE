@@ -27,7 +27,7 @@ from tareas.ia import (
     exigir_proveedor,
 )
 
-CLAVE_SECRETA = "sk-clave-super-secreta-123"
+CLAVE_SECRETA = "clave-falsa-de-prueba"
 
 
 class ServidorFalso:

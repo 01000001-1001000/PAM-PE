@@ -8,7 +8,7 @@ name: CI
 # Cuándo se ejecuta:
 on:
   push:
-    branches: [main]      # al subir a la rama principal
+    branches: [master]      # al subir a la rama principal
   pull_request:           # y en cada Pull Request (antes de fusionarlo)
 
 jobs:

@@ -46,7 +46,7 @@ tareas version
 ### Desarrollo (modo editable)
 
 ```bash
-git clone https://github.com/01000001-1001000/PAM-PE && cd cli-tareas
+git clone https://github.com/01000001-1001000/PAM-PE && cd PAM-PE
 uv sync                          # crea .venv e instala todo, incluido pytest
 uv tool install --editable .     # el comando `tareas` refleja tus cambios al instante
 uv run pytest                    # lanza las pruebas

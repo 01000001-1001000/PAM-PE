@@ -28,9 +28,9 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 Después, instala `tareas` **desde GitHub** (sustituye `TU-USUARIO`):
 
 ```bash
-uv tool install git+https://github.com/TU-USUARIO/cli-tareas
+uv tool install git+https://github.com/01000001-1001000/PAM-PE
 # o, si prefieres pipx:
-pipx install git+https://github.com/TU-USUARIO/cli-tareas
+pipx install git+https://github.com/01000001-1001000/PAM-PE
 ```
 
 Comprueba que funciona **desde cualquier carpeta**:
@@ -46,7 +46,7 @@ tareas version
 ### Desarrollo (modo editable)
 
 ```bash
-git clone https://github.com/TU-USUARIO/cli-tareas && cd cli-tareas
+git clone https://github.com/01000001-1001000/PAM-PE && cd cli-tareas
 uv sync                          # crea .venv e instala todo, incluido pytest
 uv tool install --editable .     # el comando `tareas` refleja tus cambios al instante
 uv run pytest                    # lanza las pruebas
@@ -257,7 +257,7 @@ ejecuta en Linux, Windows y macOS en cada `push` y Pull Request.
 ## Probar la instalación en otro sistema
 
 1. Pide a alguien (mejor con otro sistema operativo) que siga **solo este README**.
-2. `uv tool install git+https://github.com/TU-USUARIO/cli-tareas` y `tareas --help` / `tareas version` desde otra carpeta.
+2. `uv tool install git+https://github.com/01000001-1001000/PAM-PE/` y `tareas --help` / `tareas version` desde otra carpeta.
 3. Crea una carpeta de pruebas con ficheros de ejemplo y lanza cada acción con `--simular` y luego de verdad.
 4. Prueba un nombre con tildes y espacios (`Apuntes de Física.pdf`) y una ruta con `~`.
 5. Rompe a propósito `acciones.json`: `tareas validar` debe decir qué falla y salir con código 3.

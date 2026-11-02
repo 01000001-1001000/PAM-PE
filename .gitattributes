@@ -1,0 +1,6 @@
+# Normaliza los saltos de línea: Windows usa CRLF y Linux/macOS usan LF.
+# Con "text=auto" git guarda siempre LF en el repositorio y convierte al
+# descargar según el sistema. Sin esto aparecen «cambios fantasma» en todas
+# las líneas cuando trabajas desde Windows y Linux.
+#* text=auto
+* text=auto eol=lf

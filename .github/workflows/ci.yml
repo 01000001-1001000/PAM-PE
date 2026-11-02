@@ -1,0 +1,57 @@
+# =============================================================================
+# CI (integración continua): se ejecuta en GitHub en cada `git push` y en cada
+# Pull Request. Lanza las pruebas en LOS TRES sistemas operativos a la vez:
+# si algo solo funciona en tu equipo, aquí te enteras.
+# =============================================================================
+name: CI
+
+# Cuándo se ejecuta:
+on:
+  push:
+    branches: [main]      # al subir a la rama principal
+  pull_request:           # y en cada Pull Request (antes de fusionarlo)
+
+jobs:
+  pruebas:
+    # Nombre que aparece en la pestaña «Actions»; cada combinación es un trabajo.
+    name: Pruebas · ${{ matrix.os }} · Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      # false = si falla Windows, no cancela Linux y macOS: así ves TODOS los fallos.
+      fail-fast: false
+      # La matriz crea 3 sistemas × 2 versiones de Python = 6 trabajos en paralelo.
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.12", "3.13"]
+
+    steps:
+      # 1) Descarga el código del repositorio.
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      # 2) Instala uv (y la versión de Python pedida por la matriz).
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+          enable-cache: true      # guarda las dependencias entre ejecuciones (más rápido)
+
+      # 3) Crea el entorno virtual e instala el proyecto + pytest (grupo "dev").
+      - name: Instalar dependencias
+        run: uv sync
+
+      # 4) Ejecuta TODAS las pruebas. Si alguna falla, el trabajo se pone en rojo.
+      - name: Ejecutar las pruebas
+        run: uv run pytest -v
+
+      # 5) Humo: el comando `tareas` existe de verdad y arranca (entry point).
+      - name: Probar el comando instalado
+        run: |
+          uv run tareas --help
+          uv run tareas version
+          uv run tareas validar
+
+      # 6) Comprueba que el paquete se puede CONSTRUIR (lo que hará `uv tool install`).
+      - name: Construir el paquete
+        run: uv build

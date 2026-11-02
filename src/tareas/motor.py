@@ -5,6 +5,7 @@ Lo que NO hace: imprimir, usar colores ni conocer Typer. Todo lo que tenga que
 comunicar a la persona lo hace a través de un ``Observador`` (patrón
 Observer): la CLI pasa uno que dibuja tablas; las pruebas pasan uno silencioso.
 Gracias a eso el motor se puede probar y reutilizar sin una terminal.
+
 """
 
 from __future__ import annotations

@@ -25,7 +25,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-Después, instala `tareas` **desde GitHub** (sustituye `TU-USUARIO`):
+Después, instala `tareas` **desde GitHub**:
 
 ```bash
 uv tool install git+https://github.com/01000001-1001000/PAM-PE

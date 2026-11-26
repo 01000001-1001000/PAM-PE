@@ -43,7 +43,7 @@ tareas version
 > Si tu terminal dice que no encuentra `tareas`, ejecuta `uv tool update-shell`
 > y abre una terminal nueva (así `~/.local/bin` entra en el PATH).
 
-### Desarrollo (modo editable - acceso a todas las funciones y recomendado)
+## Instalación en modo desarrollo (modo editable - acceso a todas las funciones y recomendado)
 
 Necesitas [uv](https://docs.astral.sh/uv/) (instala también Python 3.12 y Git si es preciso).
 

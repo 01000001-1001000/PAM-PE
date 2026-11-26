@@ -27,6 +27,7 @@ from collections.abc import Mapping
 
 from dotenv import find_dotenv, load_dotenv
 
+from . import __version__
 from .errores import IAError, IANoDisponible, SinRedError
 
 # Nombres de las variables de entorno que configuran la IA.
@@ -120,7 +121,10 @@ class ProveedorOpenAI(ProveedorIA):
                 "temperature": 0.2,  # poco creativo: queremos resúmenes fieles
             }
         ).encode("utf-8")
-        cabeceras = {"Content-Type": "application/json"}
+        # User-Agent propio: sin él, urllib se identifica como «Python-urllib/3.x»
+        # y servicios protegidos por Cloudflare (como Groq) lo rechazan con un
+        # 403 aunque la clave sea correcta.
+        cabeceras = {"Content-Type": "application/json", "User-Agent": f"tareas/{__version__}"}
         if self._clave:
             cabeceras["Authorization"] = f"Bearer {self._clave}"
         peticion = urllib.request.Request(

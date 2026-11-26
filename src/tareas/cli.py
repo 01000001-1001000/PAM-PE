@@ -63,6 +63,7 @@ class Opciones:
 
     ruta_config: Path
 
+# -----------------------------------------------------------------------------
 
 # =============================================================================
 # Gestión centralizada de errores
@@ -114,6 +115,8 @@ def manejar_errores(funcion: F) -> F:
             raise typer.Exit(1) from None
 
     return envoltorio  # type: ignore[return-value]
+
+# -----------------------------------------------------------------------------
 
 
 # =============================================================================
@@ -216,6 +219,7 @@ def _describir_destino(operacion: Any, base: Path) -> str:
         partes.append(f"({operacion.nota})")
     return " ".join(partes)
 
+# -----------------------------------------------------------------------------
 
 # =============================================================================
 # Callback global: se ejecuta ANTES de cualquier subcomando
@@ -262,6 +266,7 @@ def _imprimir_json(datos: Any) -> None:
     conserva tildes y ñ legibles."""
     typer.echo(json.dumps(datos, ensure_ascii=False, indent=2))
 
+# -----------------------------------------------------------------------------
 
 # =============================================================================
 # Comandos
@@ -464,5 +469,6 @@ def ia(
         salida.print(f"[green]El servidor responde:[/green] {escape(respuesta[:80])}")
 
 
+#Activación de la librería
 if __name__ == "__main__":  # pragma: no cover
     app()

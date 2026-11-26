@@ -11,9 +11,9 @@ duplicados, resumir PDF con IA… Funciona en **Linux, Windows y macOS**.
   siempre pregunta y nunca se sobrescribe un fichero.
 - **IA opcional:** sin IA o sin red lo explica en una línea y sigue con todo lo demás.
 
-## Instalación (una sola orden)
+## Instalación (una sola orden - capado y no recomendado)
 
-Necesitas [uv](https://docs.astral.sh/uv/) (instala también Python 3.12 si falta).
+Necesitas [uv](https://docs.astral.sh/uv/) (instala también Python 3.12 y Git si faltan).
 
 ```bash
 # Linux / macOS: instalar uv (una vez)
@@ -43,10 +43,11 @@ tareas version
 > Si tu terminal dice que no encuentra `tareas`, ejecuta `uv tool update-shell`
 > y abre una terminal nueva (así `~/.local/bin` entra en el PATH).
 
-### Desarrollo (modo editable)
+### Desarrollo (modo editable - acceso a todas las funciones y recomendado)
 
 ```bash
-git clone https://github.com/01000001-1001000/PAM-PE && cd cli-tareas
+git clone https://github.com/01000001-1001000/PAM-PE
+cd cli-tareas
 uv sync                          # crea .venv e instala todo, incluido pytest
 uv tool install --editable .     # el comando `tareas` refleja tus cambios al instante
 uv run pytest                    # lanza las pruebas
@@ -58,6 +59,24 @@ uv run pytest                    # lanza las pruebas
 uv tool uninstall tareas
 uv tool list                     # comprueba que ya no aparece
 ```
+
+### Configurar
+
+Si se ha instalado con el segundo método, se podrá acceder al directorio del programa y configurar la clave API mediante la plantilla:
+
+```powershell
+# Windows (PowerShell)
+copy .env.example .env
+notepad .env
+
+```
+```bash
+# Linux / macOS:
+cp .env.example .env
+notepad .env
+
+```
+
 
 ## Primeros pasos (¡en una carpeta de pruebas!)
 

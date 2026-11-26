@@ -45,6 +45,8 @@ tareas version
 
 ### Desarrollo (modo editable - acceso a todas las funciones y recomendado)
 
+Necesitas [uv](https://docs.astral.sh/uv/) (instala también Python 3.12 y Git si es preciso).
+
 ```bash
 git clone https://github.com/01000001-1001000/PAM-PE
 cd PAM-PE

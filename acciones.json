@@ -45,14 +45,14 @@
     },
     {
       "nombre": "resumir-documentos",
-      "descripcion": "Resume con IA los PDF y textos y guarda el resumen en Resumenes/",
+      "descripcion": "Resume con IA los PDF y textos de un directorio y guarda el resumen en Resumenes/",
       "tipo": "ia_resumir",
       "filtro": { "extensiones": [".pdf", ".txt", ".md"] },
       "destino": "Resumenes"
     },
     {
       "nombre": "renombrar-por-contenido",
-      "descripcion": "La IA lee el principio de cada documento y propone un nombre que diga lo que es",
+      "descripcion": "La IA lee el principio de cada documento de un directorio y propone un nombre que diga lo que es",
       "tipo": "ia_renombrar",
       "filtro": { "extensiones": [".pdf", ".txt", ".md"] }
     },

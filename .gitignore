@@ -1,0 +1,33 @@
+# =============================================================================
+# .gitignore  ·  Lo que NUNCA debe subirse a git
+# =============================================================================
+# IMPORTANTE: este fichero se crea y se commitea ANTES que cualquier otro.
+# Si un secreto entra una sola vez en el historial, se queda para siempre
+# (y la rúbrica exige «ninguna clave en el historial»).
+
+# --- Secretos -----------------------------------------------------------------
+.env
+.env.*
+# (git NO admite comentarios en la misma línea que un patrón, por eso van aparte)
+# La plantilla SÍ se sube: no contiene claves reales.
+!.env.example
+
+# --- Entornos y caché de Python ------------------------------------------------
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# --- Artefactos de empaquetado ---------------------------------------------------
+*.egg-info/
+dist/
+build/
+
+# --- Basura del sistema operativo / editores -------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# --- Carpeta de pruebas manuales ---------------------------------------------------
+pruebas-tareas/

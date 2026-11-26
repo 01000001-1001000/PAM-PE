@@ -7,9 +7,10 @@ Observer): la CLI pasa uno que dibuja tablas; las pruebas pasan uno silencioso.
 Gracias a eso el motor se puede probar y reutilizar sin una terminal.
 
 """
-
+#Importación de variables
 from __future__ import annotations
 
+#Importación de librerías
 import errno
 import shutil
 from collections.abc import Callable
@@ -22,7 +23,7 @@ from .errores import AccionNoValida, IAError, TareasError
 from .ia import ProveedorIA
 from .plan import Contexto, Informe, Operacion, Plan
 
-
+#Definición de clases
 class Observador(Protocol):
     """Lo que el motor necesita de «quien le escucha».
 

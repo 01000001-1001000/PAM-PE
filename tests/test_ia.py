@@ -27,7 +27,7 @@ from tareas.ia import (
     exigir_proveedor,
 )
 
-CLAVE_SECRETA = "clave-falsa-de-prueba"
+CLAVE_SECRETA = "sk-clave-super-secreta-123"
 
 
 class ServidorFalso:
@@ -48,6 +48,7 @@ class ServidorFalso:
                     {
                         "ruta": self.path,
                         "autorizacion": self.headers.get("Authorization"),
+                        "user_agent": self.headers.get("User-Agent"),
                         "cuerpo": json.loads(self.rfile.read(largo) or b"{}"),
                     }
                 )
@@ -104,6 +105,15 @@ def test_consultar_envia_la_peticion_correcta_y_devuelve_el_texto(servidor: Serv
         {"role": "system", "content": "Resume esto"},
         {"role": "user", "content": "texto largo"},
     ]
+
+
+def test_la_peticion_lleva_un_user_agent_propio(servidor: ServidorFalso) -> None:
+    ProveedorOpenAI(servidor.url, "m", CLAVE_SECRETA).consultar("i", "t")
+
+    # Sin esto, urllib manda «Python-urllib/3.x» y Cloudflare (Groq) responde 403.
+    agente = servidor.peticiones[0]["user_agent"]
+    assert agente.startswith("tareas/")
+    assert "urllib" not in agente
 
 
 def test_sin_clave_no_se_envia_cabecera_de_autorizacion(servidor: ServidorFalso) -> None:

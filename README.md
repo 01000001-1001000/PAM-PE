@@ -56,7 +56,7 @@ uv run pytest                    # lanza las pruebas
 ### Desinstalar
 
 ```bash
-uv tool uninstall tareas
+uv tool uninstall cli-tareas
 uv tool list                     # comprueba que ya no aparece
 ```
 

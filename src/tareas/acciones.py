@@ -20,9 +20,10 @@ un ``Plan`` y es el Motor quien lo aplica. Así ``--simular`` es gratis y seguro
 AÑADIR UN TIPO NUEVO no exige tocar nada más: basta crear la subclase con su
 atributo ``tipo``; se registra sola (ver ``__init_subclass__``).
 """
-
+#Importación de variables
 from __future__ import annotations
 
+#Importación de librerías
 import dataclasses
 import re
 import string
@@ -50,6 +51,8 @@ from .validacion import (
 # Los nombres de acción se teclean en la terminal: minúsculas, números y guiones.
 _NOMBRE_VALIDO = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
+
+#Definición de clases
 
 # =============================================================================
 # Clase base
@@ -249,6 +252,7 @@ class Mover(AccionSimple):
             plan.operaciones.append(
                 Operacion("mover", fichero, nombre_libre(destino / fichero.name, reservados))
             )
+        #Retorno del parámetro
         return plan
 
 
@@ -272,6 +276,7 @@ class Copiar(AccionSimple):
             plan.operaciones.append(
                 Operacion("copiar", fichero, nombre_libre(destino / fichero.name, reservados))
             )
+        #Retorno del parámetro
         return plan
 
 
@@ -292,12 +297,14 @@ class Borrar(AccionSimple):
                 f"{ruta}.filtro: una acción que borra necesita al menos una condición "
                 "(extensiones, patron, mas_antiguo_que_dias o mayor_que_mb)"
             )
+        #Retorno de función
         return cls(**comunes)
 
     def planificar(self, carpeta: Path, ctx: Contexto) -> Plan:
         plan = Plan(self.nombre, carpeta)
         for fichero in self._candidatos(carpeta, ctx, plan.avisos):
             plan.operaciones.append(Operacion("borrar", fichero))
+        #Retorno del parámetro
         return plan
 
 
@@ -375,6 +382,7 @@ class Renombrar(AccionSimple):
             plan.operaciones.append(
                 Operacion("mover", fichero, nombre_libre(fichero.with_name(nuevo), reservados))
             )
+        #Retorno del parámetro
         return plan
 
 
@@ -442,6 +450,7 @@ class OrdenarPorTipo(AccionSimple):
             )
         if sin_categoria:
             plan.avisos.append(f"{sin_categoria} fichero(s) sin categoría conocida se dejan donde están.")
+        #Retorno del parámetro
         return plan
 
 
@@ -521,6 +530,7 @@ class Duplicados(AccionSimple):
                 else:  # "informar": solo se muestra
                     plan.operaciones.append(Operacion("info", copia, nota=nota))
         plan.operaciones.sort(key=lambda op: str(op.origen).casefold())
+        #Retorno del parámetro
         return plan
 
 
@@ -657,6 +667,7 @@ class IaRenombrar(_IaMixin, AccionSimple):
                     "mover", fichero, nombre_libre(nuevo, reservados), nota="nombre propuesto por IA"
                 )
             )
+        #Retorno del parámetro
         return plan
 
 

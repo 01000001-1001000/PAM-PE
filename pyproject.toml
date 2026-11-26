@@ -1,0 +1,66 @@
+# =============================================================================
+# pyproject.toml  ·  Metadatos, dependencias y ENTRY POINT del proyecto
+# =============================================================================
+# Este fichero es lo que convierte un montón de .py en una herramienta
+# instalable. Lo leen uv, pip y pipx.
+
+[project]
+# Nombre del paquete que se instala (el del repositorio).
+name = "cli-tareas"
+
+# La versión NO se escribe aquí: se lee de src/tareas/__init__.py
+# (ver [tool.hatch.version] más abajo). Así hay una única fuente de verdad
+# y `tareas version` siempre coincide con lo que se publica.
+dynamic = ["version"]
+
+description = "CLI «tareas»: ordena, renombra y resume tus ficheros con acciones definidas en acciones.json (y IA opcional)."
+readme = "README.md"
+
+# Python 3.12 o superior (el que pide el curso). uv lo descarga si falta.
+requires-python = ">=3.12"
+
+# Dependencias de EJECUCIÓN (lo que necesita el usuario final):
+dependencies = [
+    "typer>=0.12",       # Interfaz de línea de órdenes: genera --help, validación y autocompletado
+    "rich>=13",          # Tablas y colores que funcionan también en Windows Terminal
+    "python-dotenv>=1.0",  # Lee el fichero .env (claves de IA) sin meterlas en el código
+    "pypdf>=4",          # Extrae texto de PDFs para las acciones con IA (Python puro, sin binarios)
+]
+
+# -----------------------------------------------------------------------------
+# ENTRY POINT: "comando = módulo:objeto"
+# Al instalar, uv/pip crea un ejecutable llamado `tareas` que importa
+# tareas/cli.py y ejecuta el objeto `app` (la aplicación Typer).
+# Gracias a esto se puede teclear `tareas` desde cualquier carpeta.
+# -----------------------------------------------------------------------------
+[project.scripts]
+tareas = "tareas.cli:app"
+
+# Dependencias SOLO de desarrollo (uv las instala con `uv sync`, pero no se
+# instalan cuando alguien hace `uv tool install`).
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+# -----------------------------------------------------------------------------
+# Sistema de construcción (build backend). hatchling es ligero y entiende el
+# "src layout" (el código vive en src/tareas/ y no se puede importar por error
+# desde la raíz del repo, lo que evita pruebas que pasan "por casualidad").
+# -----------------------------------------------------------------------------
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/tareas/__init__.py"   # busca la línea __version__ = "x.y.z"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tareas"]
+
+# -----------------------------------------------------------------------------
+# Configuración de pytest
+# -----------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"                    # muestra un resumen de los tests no pasados

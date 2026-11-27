@@ -79,7 +79,7 @@ notepad .env
 ```bash
 # Linux / macOS:
 cp .env.example .env
-notepad .env
+nano .env
 
 ```
 

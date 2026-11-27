@@ -11,7 +11,9 @@ duplicados, resumir PDF con IA… Funciona en **Linux, Windows y macOS**.
   siempre pregunta y nunca se sobrescribe un fichero.
 - **IA opcional:** sin IA o sin red lo explica en una línea y sigue con todo lo demás.
 
-## Instalación (una sola orden - capado y no recomendado)
+## Instalación
+
+### Una sola órden - versión Lite
 
 Necesitas [uv](https://docs.astral.sh/uv/) (instala también Python 3.12 y Git si faltan).
 
@@ -43,7 +45,9 @@ tareas version
 > Si tu terminal dice que no encuentra `tareas`, ejecuta `uv tool update-shell`
 > y abre una terminal nueva (así `~/.local/bin` entra en el PATH).
 
-## Instalación en modo desarrollo (modo editable - acceso a todas las funciones y recomendado)
+Cabe señalar que, en este formato de instalación, se pierde, por ejemplo, la posibilidad de configurar la API Key para las funciones con IA, por lo que se recomienda el segundo método.
+
+### modo editable - recomendado
 
 Necesitas [uv](https://docs.astral.sh/uv/) (instala también Python 3.12 y Git si es preciso).
 
